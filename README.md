@@ -18,8 +18,11 @@ My Flip is designed to compute the two's complement of a 32-bit input
 My Mux_16bit_2to1 is designed to construct a 16-bit 2-to-1 multiplexer. When s is 0, the output is a, and when s is 1, the output is b.
 
 # alu  
-Within the ALU, the Flip function is invoked to obtain the two's complement of data_operandB, referred to as 'flipped_b.'   Subsequently, based on the least significant bit of ctrl_ALUopcode, addition or subtraction is determined.   For addition, if c_in=0, and b=data_operandB.   For subtraction, c_in=1, and b=flipped_b.   The operation is then carried out using the carry-select adder.
+Within the ALU, the Flip function is invoked to obtain the two's complement of data_operandB, referred to as 'flipped_b.'   Subsequently, based on the least significant bit of ctrl_ALUopcode, addition or subtraction is determined.   For addition, if c_in=0, and b=data_operandB.   For subtraction, c_in=1, and b=flipped_b.   The operation is then carried out using the carry-select adder.  
 
+Add bitwise, it control by the ctrl_ALUopcode's last input signal. when input is 0, use and_out, when input is 1, use or_out.  
+
+Add Logical left-shift and Arithmetic right-shift on data_operandA.
 
 isNotEqual: Using subtraction to determine whether data_operandA and data_operandB are equal. If the result is not equal to 0, it means data_operandA is not equal to data_operandB. Use an OR gate to evaluate each bit of the result of data_operandA - data_operandB, and the output is res. Then, use res for ternary evaluation to determine if data_operandA and data_operandB are equal. If, in the OR gate, every bit is 0, the res output is 0, indicating that data_operandA is equal to data_operandB. If there is a 1 in any bit inside the OR gate, the res output is 1, indicating that data_operandA and data_operandB are not equal.
 
